@@ -1,9 +1,11 @@
 
 from .inspire_hand_defaut import *
 from .inspire_dds import inspire_hand_touch,inspire_hand_ctrl,inspire_hand_state
-from unitree_sdk2py.core.channel import ChannelPublisher, ChannelFactoryInitialize
-from unitree_sdk2py.core.channel import ChannelSubscriber, ChannelFactoryInitialize
-from unitree_sdk2py.utils.thread import Thread
+# Use the bundled unitree_sdk2py copy (renamed to `unitree_sdk2py_inspire`).
+# See inspire_sdk.py header for the rationale.
+from unitree_sdk2py_inspire.core.channel import ChannelPublisher, ChannelFactoryInitialize
+from unitree_sdk2py_inspire.core.channel import ChannelSubscriber, ChannelFactoryInitialize
+from unitree_sdk2py_inspire.utils.thread import Thread
 
 from pymodbus.client import ModbusTcpClient
 from pymodbus.client import ModbusSerialClient

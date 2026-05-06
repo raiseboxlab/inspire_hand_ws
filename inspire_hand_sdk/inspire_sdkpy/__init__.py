@@ -7,13 +7,29 @@
 
 from .inspire_hand_defaut import *
 from . import inspire_dds
-from .inspire_sdk import ModbusDataHandler
-from .qt_tabs import ImageTab,MainWindow,CurveTab
+
+# Modbus driver: only needed when talking to real Inspire hardware over
+# ModbusTCP/RTU. Pulls pymodbus + (transitively) the Unitree Linux-only
+# timerfd helper. Skip cleanly when those dependencies are unavailable so
+# the package still loads for sim/teleop on platforms (macOS) without them.
+try:
+    from .inspire_sdk import ModbusDataHandler
+except Exception:
+    ModbusDataHandler = None
+
+# Qt visualisation tabs: pull PyQt5/pyqtgraph/colorcet, only needed for the
+# offline visualizer. Skip cleanly when those are not installed.
+try:
+    from .qt_tabs import ImageTab, MainWindow, CurveTab
+except Exception:
+    ImageTab = None
+    MainWindow = None
+    CurveTab = None
 
 __all__ = [
-	"inspire_dds",
-	"ModbusDataHandler",
-  "ImageTab",
-  "MainWindow",
-  "CurveTab"
+    "inspire_dds",
+    "ModbusDataHandler",
+    "ImageTab",
+    "MainWindow",
+    "CurveTab",
 ]
